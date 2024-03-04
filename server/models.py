@@ -22,21 +22,21 @@ class User(db.Model, SerializerMixin):
         return f" User_name: {self.user_name} | Tier: {self.tier} | Avatar: {self.user_avatar} | Posts: {self.posts} | Region: {self.region}"
 
 
-class Forum(db.Model, SerializerMixin):
-    __tablename__ = 'forums'
+class Dashboard(db.Model, SerializerMixin):
+    __tablename__ = 'dashboards'
     id = db.Column(db.Integer, primary_key=True)
-    forum_titles = db.Column(db.String, unique=True, nullable=False)
+    dashboard_titles = db.Column(db.String, unique=True, nullable=False)
     recent_threads_id = db.Column(db.Integer)
     saved_threads_id = db.Column(db.Integer)
 
     def __repr__(self):
-        return f" Forum_titles: {self.forum_titles} | Recent_threads_id: {self.recent_threads_id} | Saved_threads_id: {self.saved_threads_id}"
+        return f" Forum_titles: {self.dashboard_titles} | Recent_threads_id: {self.recent_threads_id} | Saved_threads_id: {self.saved_threads_id}"
     
 
 class Category(db.Model, SerializerMixin):
     __tablename__ = 'categories'
     category_name = db.Column(db.String)
-    forum_id = db.Column(db.Integer, db.ForeignKey('forums.id'))
+    dashboard_id = db.Column(db.Integer, db.ForeignKey('dashboards.id'))
     description = db.Column(db.String)
 
     def __repr__(self):
