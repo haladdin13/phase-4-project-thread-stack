@@ -22,14 +22,49 @@ class User(db.Model, SerializerMixin):
         return f" User_name: {self.user_name} | Tier: {self.tier} | Avatar: {self.user_avatar} | Posts: {self.posts} | Region: {self.region}"
 
 
+class Forum(db.Model, SerializerMixin):
+    __tablename__ = 'forums'
+    id = db.Column(db.Integer, primary_key=True)
+    forum_titles = db.Column(db.String, unique=True, nullable=False)
+    recent_threads_id = db.Column(db.Integer)
+    saved_threads_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return f" Forum_titles: {self.forum_titles} | Recent_threads_id: {self.recent_threads_id} | Saved_threads_id: {self.saved_threads_id}"
+    
+
+class Category(db.Model, SerializerMixin):
+    __tablename__ = 'categories'
+    category_name = db.Column(db.String)
+    forum_id = db.Column(db.Integer, db.ForeignKey('forums.id'))
+    description = db.Column(db.String)
+
+    def __repr__(self):
+        return f" Category_name: {self.category_name} | Description: {self.description}"
+
+class Thread(db.Model, SerializerMixin):
+    __tablename__ = 'threads'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    content = db.Column(db.String)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    likes = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, server_default = db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
+
+    def __repr__(self):
+        return f" Title: {self.title} | Content: {self.content} | Likes: {self.likes} | Created: {self.created_at} | Updated: {self.updated_at}"
+
 class Post(db.Model, SerializerMixin):
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String)
-    user_id = db.Column(db.Integer)
-    thread_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    thread_id = db.Column(db.Integer, db.ForeignKey('threads.id'))
     likes = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, server_default = db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
     def __repr__(self):
-        return f" Content: {self.content} | User_ID: {self.user_id} | Thread_id: {self.thread_id} | likes: {self.likes}"
+        return f" Content: {self.content} | User_ID: {self.user_id} | Thread_id: {self.thread_id} | likes: {self.likes} | Created: {self.created_at} | Updated: {self.updated_at}"
