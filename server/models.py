@@ -17,6 +17,11 @@ class User(db.Model, SerializerMixin):
     user_avatar = db.Column(db.String)
     socials = db.Column(db.String)
 
+    #RELATIONSHIPS
+
+    #SERIALIZATION RULES
+
+    #ADD VALIDATIONS
 
     def __repr__(self):
         return f" User_name: {self.user_name} | Email: {self.email} | Tier: {self.tier} | Avatar: {self.user_avatar} | Socials: {self.socials}"
@@ -31,6 +36,11 @@ class Favorite(db.Model, SerializerMixin):
     def __repr__(self):
         return f" UserID: {self.user_id} | ThreadID: {self.thread_id}"
     
+    #RELATIONSHIPS
+
+    #SERIALIZATION RULES
+
+    #ADD VALIDATIONS
 
 class Category(db.Model, SerializerMixin):
     __tablename__ = 'categories'
@@ -41,6 +51,14 @@ class Category(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f" Category_name: {self.category_name} | Description: {self.description}"
+
+
+    #RELATIONSHIPS
+
+    #SERIALIZATION RULES
+
+    #ADD VALIDATIONS
+
 
 class Thread(db.Model, SerializerMixin):
     __tablename__ = 'threads'
@@ -55,6 +73,13 @@ class Thread(db.Model, SerializerMixin):
     def __repr__(self):
         return f" Title: {self.title} | Content: {self.content} | Likes: {self.likes} | Created: {self.created_at} | Edited: {self.edited_at}"
 
+    #RELATIONSHIPS
+
+    #SERIALIZATION RULES
+
+    #ADD VALIDATIONS
+
+
 class Post(db.Model, SerializerMixin):
     __tablename__ = 'posts'
 
@@ -68,3 +93,9 @@ class Post(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f" Content: {self.content} | User_ID: {self.user_id} | Thread_id: {self.thread_id} | likes: {self.likes} | Created: {self.created_at} | Edited: {self.edited_at}"
+    
+    #RELATIONSHIPS
+
+    #SERIALIZATION RULES
+
+    #ADD VALIDATIONS
