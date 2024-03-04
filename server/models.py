@@ -180,7 +180,7 @@ class Post(db.Model, SerializerMixin):
     
     #RELATIONSHIPS
 
-    user = db.relationship('User', back_poplulates = 'posts')
+    user = db.relationship('User', back_populates = 'posts')
     thread = db.relationship('Thread', back_populates = 'posts')
 
     #SERIALIZATION RULES
