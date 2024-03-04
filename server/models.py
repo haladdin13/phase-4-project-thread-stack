@@ -128,15 +128,15 @@ class Category(db.Model, SerializerMixin):
 class Thread(db.Model, SerializerMixin):
     __tablename__ = 'threads'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String)
-    content = db.Column(db.String)
+    thread_title = db.Column(db.String)
+    thread_content = db.Column(db.String)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     likes = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, server_default = db.func.now())
     edited_at = db.Column(db.DateTime, onupdate = db.func.now())
 
     def __repr__(self):
-        return f" Title: {self.title} | Content: {self.content} | Likes: {self.likes} | Created: {self.created_at} | Edited: {self.edited_at}"
+        return f" Title: {self.thread_title} | Content: {self.thread_content} | Likes: {self.likes} | Created: {self.created_at} | Edited: {self.edited_at}"
 
     #RELATIONSHIPS
     categories = db.relationship('Category', back_populates = 'thread')
