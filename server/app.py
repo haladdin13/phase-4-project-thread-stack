@@ -62,7 +62,7 @@ def favorite_by_id(favorite_id):
     return response
 
     
-
+#Get All Users
 @app.route('/users', methods=['GET'])
 def users():
     users = User.query.all()
@@ -75,7 +75,7 @@ def users():
     return response
 
 
-
+#Get Users by ID
 @app.route('/users/<id:int>', methods=['GET'])
 def user_by_id(id):
     user = User.query.filter(User.id == id).first()
@@ -89,7 +89,7 @@ def user_by_id(id):
     return response
 
 
-
+#Get All Threads
 @app.route('/threads', methods=['GET'])
 def threads():
     threads = Thread.query.all()
@@ -102,7 +102,7 @@ def threads():
 
     return response
 
-
+#Get Threads by ID
 @app.route('threads/<id:int>', methods=['GET'])
 def thread_by_id(id):
     thread = User.query.filter(Thread.id == id).first()
