@@ -101,12 +101,12 @@ class Category(db.Model, SerializerMixin):
 
     #RELATIONSHIPS
 
-    users = db.relationship('User', back_populates = 'category')
+    user = db.relationship('User', back_populates = 'categories')
     threads = db.relationship('Thread', back_populates = 'category')
 
     #SERIALIZATION RULES
 
-    serialize_rules = ('-users.category', '-threads.category')
+    serialize_rules = ('-user.categories', '-threads.category')
 
     #ADD VALIDATIONS
 
@@ -139,25 +139,25 @@ class Thread(db.Model, SerializerMixin):
         return f" Title: {self.thread_title} | Content: {self.thread_content} | Likes: {self.likes} | Created: {self.created_at} | Edited: {self.edited_at}"
 
     #RELATIONSHIPS
-    categories = db.relationship('Category', back_populates = 'thread')
+    category = db.relationship('Category', back_populates = 'threads')
     favorites = db.relationship('Favorite', back_populates = 'thread')
     posts = db.relationship('Post', back_populates = 'thread')
 
     #SERIALIZATION RULES
-    serialize_rules = ('-categories.thread', '-favorites.thread', '-posts.thread')
+    serialize_rules = ('-category.threads', '-favorites.thread', '-posts.thread')
 
     #ADD VALIDATIONS
-    @validates('title')
-    def title(self, key, title):
-        if isinstance(title, str) and len(title) > 5:
-            return title
+    @validates('thread_title')
+    def title(self, key, thread_title):
+        if isinstance(thread_title, str) and len(thread_title) > 5:
+            return thread_title
         else:
             raise ValueError('Title must be longer than 5 characters')
         
-    @validates('content')
-    def content(self, key, content):
-        if isinstance(content, str) and len(content) > 5:
-            return content
+    @validates('thread_content')
+    def content(self, key, thread_content):
+        if isinstance(thread_content, str) and len(thread_content) > 5:
+            return thread_content
         else:
             raise ValueError("Content must be greater than 5 characters")
         

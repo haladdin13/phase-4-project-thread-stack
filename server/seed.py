@@ -56,8 +56,8 @@ if __name__ == '__main__':
         print("Seeding Threads Table...")
 
         new_thread_1 = Thread(
-        title = "This is the first test thread",
-        content = "This worked, who knew?",
+        thread_title = "This is the first test thread",
+        thread_content = "This worked, who knew?",
         category_id = new_category_1.id,
         likes = 6
 
