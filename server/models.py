@@ -106,7 +106,7 @@ class Category(db.Model, SerializerMixin):
 
     #SERIALIZATION RULES
 
-    serialize_rules = ('-user.categories', '-threads.category')
+    serialize_rules = ('-user.categories', '-threads.category', '-user.favorites', '-threads.favorites', '-threads.posts')
 
     #ADD VALIDATIONS
 
@@ -185,7 +185,7 @@ class Post(db.Model, SerializerMixin):
 
     #SERIALIZATION RULES
 
-    serialize_rules = ('-user.posts', '-thread.posts')
+    serialize_rules = ('-user.posts', '-thread.posts', '-user.categories', '-user.favorites', '-thread.category', '-thread.favorites')
 
     #ADD VALIDATIONS
 
