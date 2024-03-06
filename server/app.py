@@ -168,12 +168,15 @@ def threads():
         )
 
     elif request.method == "POST":
+        data = request.json
         new_thread = Thread(
             thread_title = request.json['thread_title'],
             thread_content = request.json['thread_content'],
             category_id = request.json['category_id'],
-            likes = request.json['likes']
+            
         )
+        if 'likes' in data:
+            new_thread.likes = data['likes']
         db.session.add(new_thread)
         db.session.commit()
 

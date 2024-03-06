@@ -1,10 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import ThreadContainer from './Dashboard_components/Thread_Container';
-import CategoryContainer from './category_components/CategoryContainer';
-
+import CreateThread from './Dashboard_components/Create_Thread';
 function Dashboard(){
+
     const [threads, setThreads] = useState([])
     
+    const addThread = (newThread) => {
+        console.log(newThread);
+        if (newThread && newThread.id){
+            setThreads(prevThreads => [...prevThreads, newThread]);
+        } 
+        else {
+            console.error(" Invalid Thread:", newThread);
+        }
+    };
     
 
     useEffect(() => {
@@ -24,6 +33,7 @@ function Dashboard(){
 
     return(
         <div>
+            <CreateThread onAddThread={addThread} />
             <ThreadContainer threads={threads}/>
         </div>
     )
