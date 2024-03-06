@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from "react";
-import CategoryConteiner from "./CategoryContainer";
-import CreateCategory from "./CreateCategory";
-import CategoryObject from "./CategoryObject";
+import CategoryContainer from "./category_components/CategoryContainer";
+import CreateCategory from "./category_components/CreateCategory";
+import CategoryObject from "./category_components/CategoryObject";
 
 
 function Category(){
 
     return(
         <div>
-            <CategoryConteiner />
             <CreateCategory />
+            <CategoryContainer />
             <CategoryObject />
         </div>
     )
 }
+
+export default Category;
