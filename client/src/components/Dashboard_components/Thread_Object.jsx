@@ -10,10 +10,10 @@ function ThreadObject({
     return(
        <div>
         <h1>{thread_title}</h1>
-        <p>ID:{id}</p>
-        <p>Content:{thread_content}</p>
-        <p>Category ID:{category_id}</p>
-        <i>❤️{likes}</i>
+        <p>ID: {id}</p>
+        <p>Content: {thread_content}</p>
+        <p>Category ID: {category_id}</p>
+        <i>❤️ {likes}</i>
        </div>
     )
 }

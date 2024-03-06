@@ -156,15 +156,36 @@ def user_by_id(id):
 
 
 #Get All Threads
-@app.route('/threads', methods=['GET'])
+@app.route('/threads', methods=['GET', 'POST'])
 def threads():
-    threads = Thread.query.all()
-    threads_dict =  [thread.to_dict() for thread in threads]
+    if request.method == "GET":
+        threads = Thread.query.all()
+        threads_dict =  [thread.to_dict() for thread in threads]
 
-    response = make_response(
-        threads_dict,
-        200
-    )
+        response = make_response(
+            threads_dict,
+            200
+        )
+
+    elif request.method == "POST":
+        new_thread = Thread(
+            thread_title = request.json['thread_title'],
+            thread_content = request.json['thread_content'],
+            category_id = request.json['category_id'],
+            likes = request.json['likes']
+        )
+        db.session.add(new_thread)
+        db.session.commit()
+
+        response = make_response(
+            new_thread.to_dict(),
+            200
+        )
+    else:
+        response = make_response(
+            {'message': 'Method is not working'},
+            405
+        )
 
     return response
 
