@@ -20,12 +20,78 @@ def index():
 
 
 #Get All Category Routes
-@app.route('/categories', methods=['GET'])
+@app.route('/categories', methods=['GET', 'POST'])
 def categories():
-    categories_list = [category.to_dict() for category in Category.query.all()]
-    response = make_response(categories_list, 200)
+    
+    if request.method == 'GET':
+    
+        categories_list = [category.to_dict() for category in Category.query.all()]
+        response = make_response(categories_list, 200)
 
+    elif request.method == 'POST':
+        new_category = Category(
+            category_name = request.json['category_name'],
+            description = request.json['description'],
+            user_id = request.json['user_id']
+        )
+        db.session.add(new_category)
+        db.session.commit()
+        response = make_response(new_category.to_dict(), 201)
+    else:
+        response = make_response({'message': 'Method not allowed'}, 405)
+    
     return response
+#Get Category By ID
+    
+@app.route('/categories/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
+def category_by_id(id):
+    category = Category.query.filter(Category.id == id).first()
+    if category:
+        if request.method == 'GET':
+            category_dict = category.to_dict()
+
+            response = make_response(category_dict, 200)
+        elif request.method == 'PATCH':
+            
+            try:
+                form_data = request.get_json()
+
+                for attr in form_data:
+                    setattr(category, attr, form_data[attr])
+
+                db.session.commit()
+
+                response = make_response(category.to_dict(), 202)
+            except ValueError:
+                response = make_response({'errors': ['Validation Errors']}, 400)
+        elif request.method == 'DELETE':
+            assoc_threads = Thread.query.filter(Thread.category_id == id).all()
+            for assoc_thread in assoc_threads:
+                db.session.delete(assoc_thread)
+
+                db.session.delete(category)
+
+                db.session.commit()
+                response = make_response({}, 204)
+
+            
+            assoc_posts = Post.query.filter(Post.category_id == id).all()
+            for assoc_post in assoc_posts:
+                db.session.delete(assoc_post)
+
+                db.session.delete(category)
+
+                db.session.commit()
+                response = make_response({}, 204)
+            db.session.delete(category)
+            db.session.commit()
+            response = make_response('', 204)
+    else:
+        response = make_response(
+            {'message': 'Method not allowed'}, 405
+        )
+    return response
+
 
 
 #Get All Posts
