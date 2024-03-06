@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Routes } from "react-router-dom";
 
 
-// import Dashboard from "./components/Dashboard";
-// import Category from "./components/Category";
-// import User from "./components/User";
+import Dashboard from "./Dashboard";
+import Category from "./Category";
+import User from "./User";
 // import GroupThread from "./components/GroupThread";
 // import Thread from "./components/Thread";
 // import Post from "./components/Post";
@@ -14,14 +14,23 @@ import Navbar from "./Navbar";
 
 
 function App() {
+  // const [categories, setCategories] = useState([]);
 
-  const [categories, setCategories] = useState([]);
+  return (
+    <>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/category' element={<Category />} />
+          <Route path='/user' element={<User />} />
 
-  return <div>
-    {/* <Route path = "/" element = {<Dashboard />} />
-    <Route path = "/categories" element = {<Category categories={categories}/>} /> */}
-    <Navbar />
-  </div>
+        </Routes>
+      </div>
+    </>
+  )
+
 }
 
 export default App;
