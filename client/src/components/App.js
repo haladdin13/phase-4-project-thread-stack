@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/category' element={<Category />} />
+          <Route path='/categories' element={<Category />} />
           <Route path='/user' element={<User />} />
 
         </Routes>

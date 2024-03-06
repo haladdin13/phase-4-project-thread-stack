@@ -8,7 +8,7 @@ function Navbar(){
         </Link>
         <ul>
            <CustomLink to="/dashboard">Dashboard</CustomLink>
-           <CustomLink to="/category">Categories</CustomLink>
+           <CustomLink to="/categories">Categories</CustomLink>
            <CustomLink to="/user">User</CustomLink>  
         </ul>
     </nav>
