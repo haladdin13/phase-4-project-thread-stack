@@ -18,21 +18,22 @@ function CreateCategory(){
         );
     }
     
-    const CategorySelect = ({ label, ...props }) => {
-        const [field, meta] = useField(props);
-        return (
-            <div className="form-group">
-                <label htmlFor={props.id || props.name}>{label}</label>
-                <select {...field} {...props} />
-                {meta.touched && meta.error? (
-                    <div className="error">{meta.error}</div>
-                ) : null}
-            </div>
-        );
-    }
+    // const CategorySelect = ({ label, ...props }) => {
+    //     const [field, meta] = useField(props);
+    //     return (
+    //         <div className="form-group">
+    //             <label htmlFor={props.id || props.name}>{label}</label>
+    //             <select {...field} {...props} />
+    //             {meta.touched && meta.error? (
+    //                 <div className="error">{meta.error}</div>
+    //             ) : null}
+    //         </div>
+    //     );
+    // }
 
-    const CreateCategoryForm = () => {
+    // const CreateCategoryForm = () => {
         return (
+        <div>
             <Formik
                 initialValues={{
                     name: '',
@@ -61,9 +62,10 @@ function CreateCategory(){
             </Form>
 
             </Formik>
+        </div>
             )
             
     }
-}
+// }
 
 export default CreateCategory;
