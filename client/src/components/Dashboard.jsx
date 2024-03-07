@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ThreadContainer from './Dashboard_components/Thread_Container';
 import CreateThread from './Dashboard_components/Create_Thread';
+import CurrentCategory from './category_components/CurrentCategory';
 function Dashboard(){
 
     const [threads, setThreads] = useState([])
@@ -64,6 +65,8 @@ function Dashboard(){
         <div>
             <CreateThread onAddThread={addThread} />
             <ThreadContainer threads={threads} onSave={handleSaveThread} onDelete={handleDeleteThread}/>
+
+            
         </div>
     )
 }

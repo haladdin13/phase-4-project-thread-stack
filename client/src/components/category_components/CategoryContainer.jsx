@@ -1,5 +1,6 @@
 import React from 'react';
 import CategoryObject from './CategoryObject';
+import CurrentCategory from './CurrentCategory';
 
 function CategoryContainer({renderCategory, onSave, onDelete}){
 
