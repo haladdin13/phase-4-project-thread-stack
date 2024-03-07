@@ -193,15 +193,36 @@ def threads():
     return response
 
 #Get Threads by ID
-@app.route('/threads/<int:id>', methods=['GET'])
+@app.route('/threads/<int:id>', methods=['GET', 'PATCH'])
 def thread_by_id(id):
     thread = Thread.query.filter(Thread.id == id).first()
-    thread_dict = thread.to_dict()
+    if thread:
+        if request.method == 'GET':
 
-    response = make_response(
-        thread_dict,
-        200
-    )
+            thread_dict = thread.to_dict()
+
+            response = make_response(
+                thread_dict,
+                200
+            )
+        elif request.method == 'PATCH':
+            try:
+                form_data = request.get_json()
+
+                for attr in form_data:
+                    setattr(thread, attr, form_data[attr])
+                
+                db.session.commit()
+
+                response = make_response(
+                    thread.to_dict(),
+                    202
+                )
+            except ValueError:
+                response = make_response(
+                    {'errors': ['Validation Errors']},
+                    400
+                )
 
     return response
 
