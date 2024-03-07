@@ -31,10 +31,28 @@ function Dashboard(){
         })
     }, [setThreads]);
 
+    function handleSaveThread(id, updatedThread){
+        fetch(`http://localhost:5555/threads/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedThread),
+        })
+     .then(res => res.json())
+     .then(data => {
+
+        setThreads(prevThreads => prevThreads.map(thread => 
+            thread.id === data.id ? data : thread
+        ));
+    })
+    }
+
+
     return(
         <div>
             <CreateThread onAddThread={addThread} />
-            <ThreadContainer threads={threads}/>
+            <ThreadContainer threads={threads} onSave={handleSaveThread}/>
         </div>
     )
 }
