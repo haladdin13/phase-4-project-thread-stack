@@ -75,14 +75,14 @@ def category_by_id(id):
                 response = make_response({}, 204)
 
             
-            assoc_posts = Post.query.filter(Post.category_id == id).all()
-            for assoc_post in assoc_posts:
-                db.session.delete(assoc_post)
+            # assoc_posts = Post.query.filter(Post.category_id == id).all()
+            # for assoc_post in assoc_posts:
+            #     db.session.delete(assoc_post)
 
-                db.session.delete(category)
+            #     db.session.delete(category)
 
-                db.session.commit()
-                response = make_response({}, 204)
+            #     db.session.commit()
+            #     response = make_response({}, 204)
             db.session.delete(category)
             db.session.commit()
             response = make_response('', 204)
