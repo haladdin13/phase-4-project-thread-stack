@@ -248,7 +248,7 @@ def threads():
     return response
 
 #Get Threads by ID
-@app.route('/threads/<int:id>', methods=['GET', 'PATCH'])
+@app.route('/threads/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
 def thread_by_id(id):
     thread = Thread.query.filter(Thread.id == id).first()
     if thread:
@@ -278,8 +278,31 @@ def thread_by_id(id):
                     {'errors': ['Validation Errors']},
                     400
                 )
+        elif request.method == 'DELETE':
+            assoc_posts = Post.query.filter(Post.thread_id == id).all()
+            for assoc_post in assoc_posts:
+                db.session.delete(assoc_post)
+                db.session.delete(thread)
 
-    return response
+                db.session.commit()
+                response = make_response(
+                    {},
+                    204
+                )
+            db.session.delete(thread)
+            db.session.commit()
+            response = make_response(
+                '',
+                204
+            )
+            
+        else:
+            response = make_response(
+                {'message': 'Invalid Method'},
+                405
+            )
+
+        return response
 
 
 if __name__ == '__main__':
