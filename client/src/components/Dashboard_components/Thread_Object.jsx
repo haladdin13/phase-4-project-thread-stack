@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 function ThreadObject({
     id,
@@ -6,7 +6,8 @@ function ThreadObject({
     thread_content,
     category_id,
     likes,
-    onSave
+    onSave,
+    onDelete
 }){
 
     const [editMode, setEditMode] = useState(false);
@@ -40,6 +41,15 @@ function ThreadObject({
         setEditMode(false);
     }
 
+    function handleDelete(){
+       
+        const confirmDelete = window.confirm('Are you sure you want to delete?')
+
+        if (confirmDelete){
+            onDelete(id);
+        }
+    }
+
     if (editMode) {
         return (
             <div>
@@ -67,6 +77,7 @@ function ThreadObject({
         <p>Category ID: {category_id}</p>
         <i>❤️ {likes}</i>
         <button onClick = {handleEdit}>Edit</button>
+        <button onClick = {handleDelete}>Delete</button>
        </div>
     )
 }

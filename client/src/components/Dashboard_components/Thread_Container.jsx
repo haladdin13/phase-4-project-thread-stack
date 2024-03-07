@@ -1,12 +1,12 @@
 import React from 'react';
 import ThreadObject from './Thread_Object';
 
-function ThreadContainer({threads, onSave}){
+function ThreadContainer({threads, onSave, onDelete}){
 
-    const threadToRender = threads.map((threadObj) => {
+    const renderThread = threads.map((threadObj) => {
         return(
             <div key={threadObj.id}>
-                <ThreadObject {...threadObj} onSave={onSave}/>
+                <ThreadObject {...threadObj} onSave={onSave} onDelete={onDelete}/>
             </div>
         )
     })
@@ -14,7 +14,7 @@ function ThreadContainer({threads, onSave}){
     return(
         <div>
             <h1>Threads</h1>
-            {threadToRender}
+            {renderThread}
         </div>
     )
 }
