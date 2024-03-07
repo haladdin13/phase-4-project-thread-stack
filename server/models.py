@@ -30,24 +30,24 @@ class User(db.Model, SerializerMixin):
 
     @validates('user_name')
     def validate_user_name(self, key, user_name):
-        if isinstance(user_name, str) and len(user_name) > 5:
+        if isinstance(user_name, str) and len(user_name) > 0:
             return user_name
         else:
-            raise ValueError("Username must be longer than 5 characters")
+            raise ValueError("Username must be longer than 1 characters")
         
     @validates('email')
     def validate_email(self, key, email):
-        if isinstance(email, str) and len(email) > 5:
+        if isinstance(email, str) and len(email) > 0:
             return email
         else:
-            raise ValueError("Email must be longer than 5 characters")
+            raise ValueError("Email must be longer than 1 characters")
         
     @validates('password')
     def validate_password(self, key, password):
-        if isinstance(password, str) and len(password) > 5:
+        if isinstance(password, str) and len(password) > 0:
             return password
         else:
-            raise ValueError("Password must be longer than 5 characters")
+            raise ValueError("Password must be longer than 1 characters")
         
     @validates('user_avatar')
     def validate_user_avatar(self, key, user_avatar):
@@ -112,17 +112,17 @@ class Category(db.Model, SerializerMixin):
 
     @validates('category_name')
     def validate_category_name(self, key, category_name):
-        if isinstance(category_name, str) and len(category_name) > 2:
+        if isinstance(category_name, str) and len(category_name) > 0:
             return category_name
         else:
-            raise ValueError('Category name must be a string at least 3 characters long')
+            raise ValueError('Category name must be a string at least 1 characters long')
     
     @validates('description')
     def validate_description(self, key, description):
-        if isinstance(description, str) and len(description) > 5:
+        if isinstance(description, str) and len(description) > 0:
             return description
         else:
-            raise ValueError('Description must be a string at least 6 characters long')
+            raise ValueError('Description must be a string at least 1 characters long')
 
 
 class Thread(db.Model, SerializerMixin):
@@ -149,17 +149,17 @@ class Thread(db.Model, SerializerMixin):
     #ADD VALIDATIONS
     @validates('thread_title')
     def title(self, key, thread_title):
-        if isinstance(thread_title, str) and len(thread_title) > 5:
+        if isinstance(thread_title, str) and len(thread_title) > 0:
             return thread_title
         else:
-            raise ValueError('Title must be longer than 5 characters')
+            raise ValueError('Title must be longer than 1 characters')
         
     @validates('thread_content')
     def content(self, key, thread_content):
-        if isinstance(thread_content, str) and len(thread_content) > 5:
+        if isinstance(thread_content, str) and len(thread_content) > 0:
             return thread_content
         else:
-            raise ValueError("Content must be greater than 5 characters")
+            raise ValueError("Content must be greater than 1 characters")
         
     
 
@@ -191,9 +191,9 @@ class Post(db.Model, SerializerMixin):
 
     @validates('content')
     def validate_content(self, key, content):
-        if isinstance(content, str) and len(content) > 5:
+        if isinstance(content, str) and len(content) > 0:
             return content
         else:
-            raise ValueError('Content must be a string at least 6 characters long')
+            raise ValueError('Content must be a string at least 1 characters long')
         
     
