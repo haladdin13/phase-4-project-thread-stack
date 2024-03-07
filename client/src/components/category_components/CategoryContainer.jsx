@@ -1,12 +1,12 @@
 import React from 'react';
 import CategoryObject from './CategoryObject';
 
-function CategoryContainer({renderCategory}){
+function CategoryContainer({renderCategory, onSave, onDelete}){
 
     const categoryToRender = renderCategory.map((categoryObj) => {
         return(
             <div key={categoryObj.id}>
-                <CategoryObject {...categoryObj} />
+                <CategoryObject {...categoryObj} onSave={onSave} onDelete={onDelete}/>
             </div>
         )
     })
