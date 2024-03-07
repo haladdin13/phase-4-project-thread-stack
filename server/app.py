@@ -93,21 +93,76 @@ def category_by_id(id):
     return response
 
 
+# Get All Threads By Category
+
+@app.route('/categories/<int:id>/threads', methods=['GET'])
+def threads_by_category(id):
+    category = Category.query.filter(Category.id == id).first()
+    if category:
+        thread_list = [thread.to_dict() for thread in Thread.query.filter(Thread.category_id == id).all()]
+        response = make_response(thread_list, 200)
+    else:
+        response = make_response(
+            {'message': 'Method not allowed'}, 405
+        )
+    return response
+
+
 
 #Get All Posts
-@app.route('/posts', methods=['GET'])
+@app.route('/posts', methods=['GET', 'POST'])
 def posts():
-    posts_list = [post.to_dict() for post in Post.query.all()]
-    response = make_response(posts_list, 200)
+    if request.method == 'GET':
+    
+        post_list = [post.to_dict() for post in Post.query.all()]
+        response = make_response(post_list, 200)
 
+    elif request.method == 'POST':
+        new_post = Post(
+            content = request.json['content'],
+            user_id = request.json['user_id'],
+            thread_id = request.json['thread_id'],
+            likes = request.json['likes']
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        response = make_response(new_post.to_dict(), 201)
+    else:
+        response = make_response({'message': 'Method not allowed'}, 405)
+    
     return response
 
 #Get Posts By ID
-@app.route('/posts/<int:id>', methods=['GET'])
+@app.route('/posts/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
 def post_by_id(id):
-    post = Post.query.filter(Post.id == id).first()
-    response = make_response(post.to_dict(), 200)
+    post_query = Post.query.filter(Post.id == id).first()
+    if post_query:
+        if request.method == 'GET':
+            post_dict = post_query.to_dict()
 
+            response = make_response(post_dict, 200)
+        elif request.method == 'PATCH':
+            
+            try:
+                form_data = request.get_json()
+
+                for attr in form_data:
+                    setattr(post_query, attr, form_data[attr])
+
+                db.session.commit()
+
+                response = make_response(post_query.to_dict(), 202)
+            except ValueError:
+                response = make_response({'errors': ['Validation Errors']}, 400)
+        elif request.method == 'DELETE':
+            
+            db.session.delete(post_query)
+            db.session.commit()
+            response = make_response('', 204)
+    else:
+        response = make_response(
+            {'message': 'Method not allowed'}, 405
+        )
     return response
 
 

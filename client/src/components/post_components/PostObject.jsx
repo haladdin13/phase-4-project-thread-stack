@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
-function CategoryObject({
+function PostObject({
     id,
-    category_name,
-    description,
+    content,
     user_id,
-    threads,
+    thread_id,
+    likes,
     onSave,
     onDelete
 }){
 
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState({
-        id: id,
-        category_name: category_name,
-        description: description,
-        user_id: user_id,
+        content: content
     })
 
     function handleEdit(){
@@ -52,14 +48,9 @@ function CategoryObject({
     if (editMode) {
         return (
             <div>
-                <input
-                name = "category_name"
-                value = {editData.category_name}
-                onChange = {handleChange}
-                />
                 <textarea
-                name = "description"
-                value = {editData.description}
+                name = "content"
+                value = {editData.content}
                 onChange = {handleChange}
                 />
                 <button onClick = {handleSave}>Save</button>
@@ -71,16 +62,11 @@ function CategoryObject({
 
     return(
         <div>
-            <Link to={`/categories/${id}`}>
-            <h1>{category_name}</h1>
-            </Link>
-            <p>ID: {id}</p>
-            <p>Description: {description}</p>
-            <p>User ID: {user_id}</p>
+            <p>{content}</p>
             <button onClick = {handleEdit}>Edit</button>
             <button onClick = {handleDelete}>Delete</button>
         </div>
     )
 }
 
-export default CategoryObject;
+export default PostObject;

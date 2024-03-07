@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 
-function CreateCategory(props){
+function CreatePost(props){
 
-    const [showCreateCategory, setShowCreateCategory] = useState(false);
+    const [showCreatePost, setShowCreatePost] = useState(false);
 
     function handleClick(){
-        setShowCreateCategory(!showCreateCategory);
+        setShowCreatePost(!showCreatePost);
     }
     
-    const CategoryTextInput = ({ label, ...props }) => {
+    const PostTextInput = ({ label, ...props }) => {
         const [field, meta] = useField(props);
         return (
             <div className="form-group">
@@ -27,23 +27,18 @@ function CreateCategory(props){
 
         return (
         <div>
-            {showCreateCategory ? (
+            {showCreatePost ? (
             <Formik
                 initialValues={{
-                    category_name: '',
-                    description: '',
-                    user_id: '',
+                    content: ''
                 }}
                 validationSchema={Yup.object({
-                    category_name: Yup.string()
+                    content: Yup.string()
                     .min(1, 'Name must be at least 1 characters long')
                     .required('Name is required'),
-                    description: Yup.string()
-                    .min(1, 'Description must be at least 1 characters long')
-                    .required('Description is required'),
                 })}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
-                    fetch('http://localhost:5555/categories', {
+                    fetch('http://localhost:5555/posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,8 +46,8 @@ function CreateCategory(props){
                 body: JSON.stringify(values),
                 })
                 .then(res => res.json())
-                .then(newCategory => {
-                    props.onAddCategory(newCategory)
+                .then(newPost => {
+                    props.onAddPost(newPost)
                     resetForm();
                     setSubmitting(false)
                 })
@@ -60,17 +55,16 @@ function CreateCategory(props){
         
             >
             <Form>
-                <CategoryTextInput label="Name" name="category_name" />
-                <CategoryTextInput label="Description" name="description" />
+                <PostTextInput label="Name" name="content" />
                 <button type="submit">Submit</button>
             </Form>
 
             </Formik>
             ) : null}
-            <button onClick={handleClick}>{showCreateCategory ? "Cancel" : "Create A Category"}</button>
+            <button onClick={handleClick}>{showCreatePost ? "Cancel" : "Create A Post"}</button>
         </div>
             )
             
 }
 
-export default CreateCategory;
+export default CreatePost;
