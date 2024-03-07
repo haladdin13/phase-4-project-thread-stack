@@ -48,6 +48,17 @@ function Dashboard(){
     })
     }
 
+    // function handleDeleteThread(id) {
+    //     fetch(`http://localhost:5555/threads/${id}`, {
+    //         method: 'DELETE',
+    //     })
+    //     .then(response => {
+    //             setRenderThread(prevThreads => 
+    //                 prevThreads.filter(thread => thread.id !== id)
+    //             );
+    //     })
+    // }
+
 
     return(
         <div>
