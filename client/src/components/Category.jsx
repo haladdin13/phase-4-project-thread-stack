@@ -8,8 +8,8 @@ function Category(){
     const [renderCategory, setRenderCategory] = useState([]);
 
     const addCategory = (newCategory) => {
-        console.log(newCategory); // Log the newCategory to verify its structure
-        if (newCategory && newCategory.id) { // Ensure newCategory is not undefined and has an id
+        console.log(newCategory); 
+        if (newCategory && newCategory.id) {
             setRenderCategory(prevCategories => [...prevCategories, newCategory]);
         } else {
             console.error('Attempted to add an undefined or invalid category:', newCategory);

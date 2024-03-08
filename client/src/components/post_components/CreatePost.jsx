@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 
-function CreatePost(props){
+function CreatePost({onAddPost, threadId}){
 
     const [showCreatePost, setShowCreatePost] = useState(false);
+
+
 
     function handleClick(){
         setShowCreatePost(!showCreatePost);
@@ -30,7 +32,10 @@ function CreatePost(props){
             {showCreatePost ? (
             <Formik
                 initialValues={{
-                    content: ''
+                    content: '',
+                    user_id: '',
+                    thread_id: threadId,
+                    likes: ''
                 }}
                 validationSchema={Yup.object({
                     content: Yup.string()
@@ -43,11 +48,15 @@ function CreatePost(props){
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(values),
+                body: JSON.stringify({
+                    content: values.content,
+                    user_id: values.user_id,
+                    thread_id: threadId
+                }),
                 })
                 .then(res => res.json())
                 .then(newPost => {
-                    props.onAddPost(newPost)
+                    onAddPost(newPost)
                     resetForm();
                     setSubmitting(false)
                 })
@@ -55,7 +64,7 @@ function CreatePost(props){
         
             >
             <Form>
-                <PostTextInput label="Name" name="content" />
+                <PostTextInput label="New Post" name="content" />
                 <button type="submit">Submit</button>
             </Form>
 

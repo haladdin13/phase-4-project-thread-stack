@@ -118,12 +118,14 @@ def posts():
         response = make_response(post_list, 200)
 
     elif request.method == 'POST':
+        data = request.json
         new_post = Post(
             content = request.json['content'],
             user_id = request.json['user_id'],
-            thread_id = request.json['thread_id'],
-            likes = request.json['likes']
+            thread_id = request.json['thread_id']
         )
+        if 'likes' in data:
+            new_post.likes = data['likes']
         db.session.add(new_post)
         db.session.commit()
         response = make_response(new_post.to_dict(), 201)
