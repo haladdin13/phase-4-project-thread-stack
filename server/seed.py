@@ -30,7 +30,7 @@ if __name__ == '__main__':
                 email=fake.email(),
                 password=fake.password(length=10),
                 tier=randint(1, 10),
-                user_avatar=fake.image_url(),
+                user_avatar="https://bootdey.com/img/Content/avatar/avatar1.png",
                 socials=fake.url()
             )
             db.session.add(user)

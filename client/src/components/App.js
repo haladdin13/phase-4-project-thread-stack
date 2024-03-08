@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, Routes } from "react-router-dom";
+import UserContext from "./UserContext";
 
 
 import Dashboard from "./Dashboard";
@@ -17,10 +18,16 @@ import Navbar from "./Navbar";
 
 function App() {
 
+  const [user, setUser] = useState({
+    userName: "nkhattak",
+    userAvatar: "https://bootdey.com/img/Content/avatar/avatar1.png",
+  })
+
 
   return (
     <>
       <Navbar />
+      <UserContext.Provider value={user}>
       <div className="container">
         <Routes>
           <Route path='/' element={<Dashboard />} />
@@ -29,9 +36,9 @@ function App() {
           <Route path="/categories/:id" element={<CurrentCategory />} />
           <Route path='/user' element={<User />} />
           <Route path='/threads/:id' element={<CurrentThread />}/>
-
         </Routes>
       </div>
+      </UserContext.Provider>
     </>
   )
 

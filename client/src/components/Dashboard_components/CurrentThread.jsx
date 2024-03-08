@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CreatePost from '../post_components/CreatePost';
+import { useUser } from '../UserContext';
 
-function CurrentThread({
-    thread_title,
-    thread_content,
-    category_id,
-    posts,
-    likes
-}) {
-    const [addPost, setAddPost] = useState([]);
+function CurrentThread(props) {
+
+    console.log(props.userName, props.userAvatar)
+    const { userName, userAvatar } = useUser();
+
     const [currentThread, setCurrentThread] = useState({
         thread_title: '',
         thread_content: '',
@@ -39,8 +37,8 @@ function CurrentThread({
             .then(data => {
                 console.log(data.posts)
                 setCurrentThread(prevState => ({
-                    ...prevState, // Use prevState to ensure you're correctly updating the state based on its previous value
-                    ...data // This updates the state with fetched data, assuming data structure matches your state
+                    ...prevState, 
+                    ...data
                 }));
             });
     }, [id]);
@@ -49,6 +47,8 @@ function CurrentThread({
         <div>
         <h1>{currentThread.thread_title}</h1>
         <h2>{currentThread.thread_content}</h2>
+        <h4>{userName}</h4>
+        <img src={userAvatar} alt="Profile"></img>
         <div>
           {currentThread.posts && currentThread.posts.map(post => (
               <div key={post.id}>
