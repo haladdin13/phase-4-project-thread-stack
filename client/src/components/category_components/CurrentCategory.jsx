@@ -52,7 +52,7 @@ function CurrentCategory({
         <div>
         <h1>{categoryThread.category_name}</h1>
         <h2>{categoryThread.description}</h2>
-        <CreateThread onAddThread={addThread} />
+        <CreateThread onAddThread={addThread} categoryID={id}/>
         <div className='CurrentCategory'>
           {categoryThread.threads && categoryThread.threads.map(thread => (
               <div className="ThreadContainer">
