@@ -52,7 +52,7 @@ function ThreadObject({
 
     if (editMode) {
         return (
-            <div>
+            <div className="EditThreadForm">
                 <input
                 name = "thread_title"
                 value = {editData.thread_title}

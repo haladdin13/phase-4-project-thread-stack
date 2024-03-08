@@ -61,7 +61,7 @@ function CreateThread(props){
           }}
         
             >
-            <Form>
+            <Form className='Form'>
                 <ThreadTextInput label="Title" name="thread_title" />
                 <ThreadTextInput label="Description" name="thread_content" />
                 <button type="submit">Submit</button>
@@ -69,7 +69,7 @@ function CreateThread(props){
 
             </Formik>
             ) : null}
-            <button onClick={handleClick}>{showCreateThread ? "Cancel" : "Create A Thread"}</button>
+            <button className='Create-thread-dashboard' onClick={handleClick}>{showCreateThread ? "Cancel" : "Create A Thread"}</button>
         </div>
             )
             

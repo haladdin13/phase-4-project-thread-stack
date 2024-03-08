@@ -270,3 +270,236 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     margin-bottom: 20px;
     background-color: #f9f9f9;
 }
+
+.Create-thread-dashboard{
+    display: flex;
+        position: absolute;
+        right: 51px;
+        top: 42px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        margin-top: 10px;
+            
+ }
+        
+.Create-thread-dashboard:hover {
+     background-color: #0056b3;
+}
+.Form {
+display: flex;
+    flex-direction: row;
+    align-items: normal;
+    max-width: 503px;
+    position: absolute;
+    right: 282px;
+    top: 36.5px;
+    max-height: 32px;
+    justify-content: space-between;
+}
+
+.Form label {
+    margin-bottom: 5px;
+}
+
+.Form input,
+.Form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.Form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    right: -85px;
+    top: 16px;
+}
+
+.Form button:hover {
+    background-color: #0056b3;
+}
+
+.error{
+    display: flex;
+    position: absolute;
+    top: 0px;
+}
+
+.EditThreadForm {
+display: flex;
+flex-direction: row;
+max-width: 883px;
+max-height: 60px;
+}
+
+.EditThreadForm input,
+.EditThreadForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.EditThreadForm button {
+    padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+        right: -17px;
+        max-height: 48px;
+}
+
+.EditThreadForm button:hover {
+    background-color: #0056b3;
+}
+
+
+.EditCategoryForm {
+    display: flex;
+        flex-direction: row;
+        max-width: 883px;
+        max-height: 60px;
+}
+
+.EditCategoryForm input,
+.EditCategoryForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.EditCategoryForm button {
+    padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+        right: -17px;
+        max-height: 48px;
+}
+
+.EditCategoryForm button:hover {
+    background-color: #0056b3;
+}
+
+.Create-Category{
+    display: flex;
+        position: absolute;
+        right: 51px;
+        top: 42px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        margin-top: 10px;
+}
+
+.Create-Category-Form {
+    display: flex;
+        flex-direction: row;
+        align-items: normal;
+        max-width: 503px;
+        position: absolute;
+        right: 282px;
+        top: 36.5px;
+        max-height: 32px;
+        justify-content: space-between;
+}
+
+.Create-Category-Form label {
+    margin-bottom: 5px;
+}
+
+.Create-Category-Form input,
+.Create-Category-Form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.Create-Category-Form button {
+padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    right: -85px;
+    top: 16px;
+}
+
+.Create-Category-Form button:hover {
+    background-color: #0056b3;
+}
+
+.Create-Post-Button{
+    padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        
+}
+
+.PostForm {
+    display: flex;
+        flex-direction: row;
+        align-items: normal;
+        max-width: 503px;
+}
+
+.PostForm label {
+    margin-bottom: 5px;
+}
+
+.PostForm input {
+    width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+}
+
+.PostForm button {
+padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+        left: 232px;
+        bottom: -130px;
+        }
+
+
+.PostForm button:hover {
+    background-color: #0056b3;
+}

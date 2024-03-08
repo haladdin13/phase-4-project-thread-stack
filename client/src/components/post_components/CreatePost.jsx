@@ -63,14 +63,14 @@ function CreatePost({onAddPost, threadId}){
           }}
         
             >
-            <Form>
+            <Form className="PostForm">
                 <PostTextInput label="New Post" name="content" />
                 <button type="submit">Submit</button>
             </Form>
 
             </Formik>
             ) : null}
-            <button onClick={handleClick}>{showCreatePost ? "Cancel" : "Create A Post"}</button>
+            <button className='Create-Post-Button' onClick={handleClick}>{showCreatePost ? "Cancel" : "Create A Post"}</button>
         </div>
             )
             
