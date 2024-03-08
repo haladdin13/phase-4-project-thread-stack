@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function CurrentCategory({
     category_name,
@@ -35,7 +36,9 @@ function CurrentCategory({
         <div>
           {categoryThread.threads && categoryThread.threads.map(thread => (
               <div>
+                <Link to={`/threads/${thread.id}`}>
                     <h3 key={thread.id}>{thread.thread_title}</h3>
+                </Link>
                     <p>{thread.thread_content}</p>
               </div>
           ))}

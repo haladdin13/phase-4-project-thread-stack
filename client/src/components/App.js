@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import Category from "./Category";
 import User from "./User";
 import CurrentCategory from "./category_components/CurrentCategory";
+import CurrentThread from "./Dashboard_components/CurrentThread";
 // import GroupThread from "./components/GroupThread";
 // import Thread from "./components/Thread";
 // import Post from "./components/Post";
@@ -27,6 +28,7 @@ function App() {
           <Route path='/categories' element={<Category />} />
           <Route path="/categories/:id" element={<CurrentCategory />} />
           <Route path='/user' element={<User />} />
+          <Route path='/threads/:id' element={<CurrentThread />}/>
 
         </Routes>
       </div>

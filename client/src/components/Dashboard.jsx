@@ -36,7 +36,6 @@ function Dashboard(){
         <div>
             <CreateThread onAddThread={addThread} />
             <ThreadContainer threads={threads}/>
-            <CurrentCategory threads={threads}/>
         </div>
     )
 }
