@@ -32,10 +32,42 @@ function Dashboard(){
         })
     }, [setThreads]);
 
+    function handleSaveThread(id, updatedThread){
+        fetch(`http://localhost:5555/threads/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedThread),
+        })
+     .then(res => res.json())
+     .then(data => {
+
+        setThreads(prevThreads => prevThreads.map(thread => 
+            thread.id === data.id ? data : thread
+        ));
+    })
+    }
+
+    function handleDeleteThread(id) {
+        fetch(`http://localhost:5555/threads/${id}`, {
+            method: 'DELETE',
+        })
+        .then(response => {
+                setThreads(prevThreads => 
+                    prevThreads.filter(thread => thread.id !== id)
+                );
+        })
+    }
+
+
     return(
         <div>
             <CreateThread onAddThread={addThread} />
-            <ThreadContainer threads={threads}/>
+
+
+            <ThreadContainer threads={threads} onSave={handleSaveThread} onDelete={handleDeleteThread}/>
+
         </div>
     )
 }
