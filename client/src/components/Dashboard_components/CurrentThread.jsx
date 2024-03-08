@@ -44,12 +44,11 @@ function CurrentThread(props) {
     }, [id]);
 
     return (
-        <div>
+    <div>
         <h1>{currentThread.thread_title}</h1>
         <h2>{currentThread.thread_content}</h2>
         <h4>{userName}</h4>
         <img src={userAvatar} alt="Profile"></img>
-        <div>
         <div className='CurrentThread'>
           {currentThread.posts && currentThread.posts.map(post => (
               <div className="PostContainer" key={post.id}>
