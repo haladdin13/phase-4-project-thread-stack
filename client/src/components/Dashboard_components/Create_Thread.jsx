@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 
-function CreateThread(props){
+function CreateThread({ onAddThread, categoryID }){
 
     const [showCreateThread, setShowCreateThread] = useState(false);
 
@@ -32,7 +32,7 @@ function CreateThread(props){
                 initialValues={{
                     thread_title: '',
                     thread_content: '',
-                    category_id: '',
+                    category_id: categoryID,
                     likes: ''
                     
                 }}
@@ -50,11 +50,15 @@ function CreateThread(props){
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(values),
+                body: JSON.stringify({
+                    thread_title: values.thread_title,
+                    thread_content: values.thread_content,
+                    category_id: values.category_id
+                }),
                 })
                 .then(res => res.json())
                 .then(newThread => {
-                    props.onAddThread(newThread)
+                    onAddThread(newThread)
                     resetForm();
                     setSubmitting(false)
                 })
