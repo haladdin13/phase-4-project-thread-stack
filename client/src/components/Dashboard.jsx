@@ -65,7 +65,7 @@ function Dashboard(){
         <div>
             <CreateThread onAddThread={addThread} />
 
-
+            
             <ThreadContainer threads={threads} onSave={handleSaveThread} onDelete={handleDeleteThread}/>
 
         </div>

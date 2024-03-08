@@ -49,9 +49,9 @@ function CurrentThread({
         <div>
         <h1>{currentThread.thread_title}</h1>
         <h2>{currentThread.thread_content}</h2>
-        <div>
+        <div className='CurrentThread'>
           {currentThread.posts && currentThread.posts.map(post => (
-              <div key={post.id}>
+              <div className="PostContainer" key={post.id}>
                     <p>{post.content}</p>
                     <i>❤️ {currentThread.likes}</i>
               </div>
