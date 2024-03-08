@@ -46,7 +46,7 @@ body{
 
 body {
     background: #f5f5f5;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .ui-w-80 {
@@ -143,4 +143,130 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .light-style .account-settings-links .list-group-item {
     padding: 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+.ThreadObject {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.ThreadObject h1 {
+  margin-top: 0;
+}
+
+.ThreadObject p {
+  margin-bottom: 5px;
+}
+
+.ThreadObject button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.ThreadObject button:hover {
+  background-color: #0056b3;
+}
+
+.ThreadObject i {
+  margin-left: 10px;
+  display: flex;
+}
+
+.CategoryObject {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.CategoryObject h1 {
+    margin-top: 0;
+}
+
+.CategoryObject p {
+    margin-bottom: 5px;
+}
+
+.CategoryObject button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.CategoryObject button:hover {
+    background-color: #0056b3;
+}
+
+.CurrentCategory {
+    margin-top: 20px;
+}
+
+.CurrentCategory h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.CurrentCategory p {
+    margin-bottom: 20px;
+}
+
+.CurrentCategory a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.CurrentCategory a:hover {
+    text-decoration: underline;
+}
+
+.ThreadContainer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.CurrentThread {
+    margin-top: 20px;
+}
+
+.CurrentThread h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.CurrentThread h2 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.CurrentThread p {
+    margin-bottom: 10px;
+}
+
+.CurrentThread i {
+    margin-left: 5px;
+}
+
+.PostContainer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
 }

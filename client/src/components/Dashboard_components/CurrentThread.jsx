@@ -50,8 +50,9 @@ function CurrentThread(props) {
         <h4>{userName}</h4>
         <img src={userAvatar} alt="Profile"></img>
         <div>
+        <div className='CurrentThread'>
           {currentThread.posts && currentThread.posts.map(post => (
-              <div key={post.id}>
+              <div className="PostContainer" key={post.id}>
                     <p>{post.content}</p>
                     <i>❤️ {currentThread.likes}</i>
               </div>

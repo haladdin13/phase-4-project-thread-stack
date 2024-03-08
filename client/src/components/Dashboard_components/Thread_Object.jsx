@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import { Link } from 'react-router-dom';
 function ThreadObject({
     id,
     thread_title,
@@ -70,8 +70,10 @@ function ThreadObject({
     }
     
     return(
-       <div>
+       <div className='ThreadObject'>
+        <Link to={`/threads/${id}`}>
         <h1>{thread_title}</h1>
+        </Link>
         <p>ID: {id}</p>
         <p>Content: {thread_content}</p>
         <p>Category ID: {category_id}</p>

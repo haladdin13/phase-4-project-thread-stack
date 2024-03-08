@@ -70,7 +70,7 @@ function CategoryObject({
 
 
     return(
-        <div>
+        <div className='CategoryObject'>
             <Link to={`/categories/${id}`}>
             <h1>{category_name}</h1>
             </Link>
