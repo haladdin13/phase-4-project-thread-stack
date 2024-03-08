@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import CreateThread from '../Dashboard_components/Create_Thread';
 function CurrentCategory({
     category_name,
     description,
-    threads,
     user_id
 }) {
+    const { id } = useParams();
+    const [threads, setThreads] = useState({
+        thread_title: '',
+        thread_content: '',
+        category_id: id,
+        likes: ''
+    })
+    
     const [categoryThread, setCategoryThread] = useState({
         category_name: '',
         description: '',
@@ -15,7 +22,19 @@ function CurrentCategory({
         user_id: ''
     });
     console.log(categoryThread)
-    const { id } = useParams();
+
+    const addThread = (newThread) => {
+        console.log(newThread);
+        if (newThread && newThread.id){
+            setCategoryThread(prevCategory => ({
+                ...prevCategory,
+                threads: [...prevCategory.threads, newThread]
+        }));
+        } 
+        else {
+            console.error(" Invalid Thread:", newThread);
+        }
+    };
 
     useEffect(() => {
         fetch(`http://localhost:5555/categories/${id}`)
@@ -33,9 +52,10 @@ function CurrentCategory({
         <div>
         <h1>{categoryThread.category_name}</h1>
         <h2>{categoryThread.description}</h2>
-        <div>
+        <CreateThread onAddThread={addThread} />
+        <div className='CurrentCategory'>
           {categoryThread.threads && categoryThread.threads.map(thread => (
-              <div>
+              <div className="ThreadContainer">
                 <Link to={`/threads/${thread.id}`}>
                     <h3 key={thread.id}>{thread.thread_title}</h3>
                 </Link>

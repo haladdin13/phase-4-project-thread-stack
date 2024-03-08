@@ -70,7 +70,7 @@ function ThreadObject({
     }
     
     return(
-       <div>
+       <div className='ThreadObject'>
         <Link to={`/threads/${id}`}>
         <h1>{thread_title}</h1>
         </Link>
