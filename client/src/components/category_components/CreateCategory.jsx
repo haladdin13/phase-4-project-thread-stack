@@ -59,7 +59,7 @@ function CreateCategory(props){
           }}
         
             >
-            <Form>
+            <Form className='Create-Category-Form'>
                 <CategoryTextInput label="Name" name="category_name" />
                 <CategoryTextInput label="Description" name="description" />
                 <button type="submit">Submit</button>
@@ -67,7 +67,7 @@ function CreateCategory(props){
 
             </Formik>
             ) : null}
-            <button onClick={handleClick}>{showCreateCategory ? "Cancel" : "Create A Category"}</button>
+            <button className='Create-Category' onClick={handleClick}>{showCreateCategory ? "Cancel" : "Create A Category"}</button>
         </div>
             )
             

@@ -51,7 +51,7 @@ function CategoryObject({
 
     if (editMode) {
         return (
-            <div>
+            <div className="EditCategoryForm">
                 <input
                 name = "category_name"
                 value = {editData.category_name}
