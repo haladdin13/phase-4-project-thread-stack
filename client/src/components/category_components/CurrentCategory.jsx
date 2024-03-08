@@ -42,8 +42,8 @@ function CurrentCategory({
             .then(data => {
                 console.log(data.threads)
                 setCategoryThread(prevState => ({
-                    ...prevState, // Use prevState to ensure you're correctly updating the state based on its previous value
-                    ...data // This updates the state with fetched data, assuming data structure matches your state
+                    ...prevState, 
+                    ...data
                 }));
             });
     }, [id]);

@@ -1,6 +1,17 @@
 import React from 'react';
+import CurrentThread from './Dashboard_components/CurrentThread';
+import { Switch, Route, Routes } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 const UserProfile = () => {
+    
+    let userAvatar = 'https://bootdey.com/img/Content/avatar/avatar1.png'
+    let userName = "nkhattak"
+    let fullName = "Nuburooj Khattak"
+    let userEmail = "nuburoojkhattak@mail.com"
+    let userCompany = "FlatIron"
+    const { id } = useParams();
+
     return (
         <div className="container light-style flex-grow-1 container-p-y">
             <h4 className="font-weight-bold py-3 mb-4">
@@ -22,7 +33,7 @@ const UserProfile = () => {
                         <div className="tab-content">
                             <div className="tab-pane fade active show" id="account-general">
                                 <div className="card-body media align-items-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile" className="d-block ui-w-80" />
+                                    <img src={userAvatar} alt="Profile" className="d-block ui-w-80" />
                                     <div className="media-body ml-4">
                                         <label className="btn btn-outline-primary">
                                             Upload new photo
@@ -36,15 +47,15 @@ const UserProfile = () => {
                                 <div className="card-body">
                                     <div className="form-group">
                                         <label className="form-label">Username</label>
-                                        <input type="text" className="form-control mb-1" value="nkhattak" />
+                                        <input type="text" className="form-control mb-1" defaultValue={userName} />
                                     </div>
                                     <div className="form-group">
                                         <label className="form-label">Name</label>
-                                        <input type="text" className="form-control" value="Nuburooj Khattak" />
+                                        <input type="text" className="form-control" defaultValue={fullName} />
                                     </div>
                                     <div className="form-group">
                                         <label className="form-label">E-mail</label>
-                                        <input type="text" className="form-control mb-1" value="nuburoojkhattak@mail.com" />
+                                        <input type="text" className="form-control mb-1" defaultValue={userEmail} />
                                         <div className="alert alert-warning mt-3">
                                             Your email is not confirmed. Please check your inbox.<br />
                                             <a href="javascript:void(0)">Resend confirmation</a>
@@ -52,7 +63,7 @@ const UserProfile = () => {
                                     </div>
                                     <div className="form-group">
                                         <label className="form-label">Company</label>
-                                        <input type="text" className="form-control" value="FlatIron." />
+                                        <input type="text" className="form-control" defaultValue={userCompany} />
                                     </div>
                                 </div>
                             </div>
@@ -70,6 +81,11 @@ const UserProfile = () => {
             <div className="text-right mt-3">
                 <button type="button" className="btn btn-primary">Save changes</button>&nbsp;
                 <button type="button" className="btn btn-default">Cancel</button>
+            </div>
+            <div>
+                <Routes>
+                    <Route path={`/threads/:id`} element={<CurrentThread userName={userName} userAvatar={userAvatar} />} />
+                </Routes>
             </div>
         </div>
     );
