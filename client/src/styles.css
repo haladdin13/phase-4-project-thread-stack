@@ -494,9 +494,10 @@ padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
-    position: absolute;
-        left: 232px;
-        bottom: -130px;
+    position: relative;
+        max-height: 33px;
+        bottom: -18px;
+        left: 6px;
         }
 
 

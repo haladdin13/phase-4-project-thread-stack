@@ -13,6 +13,7 @@ import CurrentThread from "./Dashboard_components/CurrentThread";
 // import Post from "./components/Post";
 // import Favorite from "./components/Favorite";
 import Navbar from "./Navbar";
+import UserSignup from "./UserSignup";
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/categories/:id" element={<CurrentCategory />} />
           <Route path='/user' element={<User />} />
           <Route path='/threads/:id' element={<CurrentThread />}/>
+          <Route path='/signup' element={<UserSignup />} />
         </Routes>
       </div>
       </UserContext.Provider>
