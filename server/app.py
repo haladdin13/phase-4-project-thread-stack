@@ -253,6 +253,7 @@ def threads():
 @app.route('/threads/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
 def thread_by_id(id):
     thread = Thread.query.filter(Thread.id == id).first()
+
     if thread:
         if request.method == 'GET':
 

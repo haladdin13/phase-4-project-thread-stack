@@ -43,6 +43,9 @@ function CreatePost({onAddPost, threadId}){
                     .required('Name is required'),
                 })}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
+
+
+
                     fetch('http://localhost:5555/posts', {
                 method: 'POST',
                 headers: {
@@ -50,7 +53,7 @@ function CreatePost({onAddPost, threadId}){
                 },
                 body: JSON.stringify({
                     content: values.content,
-                    user_id: values.user_id,
+                    // user_id: values.user_id,
                     thread_id: threadId
                 }),
                 })

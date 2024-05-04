@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import CreatePost from '../post_components/CreatePost';
 import { useUser } from '../UserContext';
 
-function CurrentThread(props) {
+function CurrentThread() {
 
-    console.log(props.userName, props.userAvatar)
     const { userName, userAvatar } = useUser();
 
     const [currentThread, setCurrentThread] = useState({
@@ -36,6 +35,7 @@ function CurrentThread(props) {
             .then(response => response.json())
             .then(data => {
                 console.log(data.posts)
+                console.log(data.posts.user)
                 setCurrentThread(prevState => ({
                     ...prevState, 
                     ...data
@@ -52,8 +52,11 @@ function CurrentThread(props) {
         <div className='CurrentThread'>
           {currentThread.posts && currentThread.posts.map(post => (
               <div className="PostContainer" key={post.id}>
+                    <p>{post.user.user_name}</p>
+                    <img src={post.user.user_avatar} alt="User Avatar" />
+                    <p>Posted by: {post.user.user_name}</p>
                     <p>{post.content}</p>
-                    <i>❤️ {currentThread.likes}</i>
+                    <i>❤️ {post.likes}</i>
               </div>
           ))}
         </div>
