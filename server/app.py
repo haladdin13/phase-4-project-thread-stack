@@ -241,10 +241,24 @@ def post_by_id(id):
 
 
 #Get All Favorites
-@app.route('/favorites', methods=['GET'])
+@app.route('/favorites', methods=['GET', 'POST'])
 def favorites():
     favorites_list = [favorite.to_dict() for favorite in Favorite.query.all()]
-    response = make_response(favorites_list, 200)
+    if request.method == 'GET':
+        response = make_response(favorites_list, 200)
+        
+    elif request.method == 'POST':
+        new_favorite = Favorite(
+            user_id = request.json['user_id'],
+            thread_id = request.json['thread_id']
+        )
+
+        db.session.add(new_favorite)
+        db.session.commit()
+        response = make_response(new_favorite.to_dict(), 201)
+        
+    else:
+        response = make_response({'message': 'Method not allowed'}, 405)
 
     return response
 

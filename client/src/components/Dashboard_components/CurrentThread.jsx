@@ -14,6 +14,9 @@ function CurrentThread() {
         posts: [],
         likes: ''
     });
+
+    const [favThread, setFavThread] = useState(false)
+    console.log(favThread);
     console.log(currentThread)
     const { id } = useParams();
 
@@ -29,6 +32,34 @@ function CurrentThread() {
             console.error('Attempted to add an undefined or invalid Post:', newPost);
         }
     };
+
+    function handleFavThread() {
+        setFavThread(!favThread)
+        console.log(favThread)
+        
+
+            fetch(`http://localhost:5555/favorites`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: 'user.id',
+                    thread_id: id
+                })
+            }).then(res => {
+                if (res.status!= 200) {
+                    console.log("EROEROEROR");
+                    return;
+                }
+                res.json().then(data => {
+                    if (data!= null) {
+                        setCurrentThread(data)
+                        console.log(data);
+                    }
+                });
+            })
+    }
 
     useEffect(() => {
         fetch(`http://localhost:5555/threads/${id}`)
@@ -49,6 +80,7 @@ function CurrentThread() {
         <h2>{currentThread.thread_content}</h2>
         <h4>{userName}</h4>
         <img src={userAvatar} alt="Profile"></img>
+        <button onClick = {handleFavThread}>❤️</button>
         <div className='CurrentThread'>
           {currentThread.posts && currentThread.posts.map(post => (
               <div className="PostContainer" key={post.id}>

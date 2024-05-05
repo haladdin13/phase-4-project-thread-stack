@@ -28,7 +28,7 @@ if __name__ == '__main__':
             user = User(
                 user_name=fake.user_name(),
                 email=fake.email(),
-                password=fake.password(length=10),
+                _password_hash=fake.password(length=10),
                 tier=randint(1, 10),
                 user_avatar="https://bootdey.com/img/Content/avatar/avatar1.png",
                 socials=fake.url()
@@ -73,13 +73,13 @@ if __name__ == '__main__':
             db.session.add(post)
         db.session.commit()
 
-        print("Seeding Favorites Table...")
-        for _ in range(50):  # Create 50 favorites
-            favorite = Favorite(
-                user_id=rc(users).id,
-                thread_id=rc(threads).id
-            )
-            db.session.add(favorite)
-        db.session.commit()
+        # print("Seeding Favorites Table...")
+        # for _ in range(50):  # Create 50 favorites
+        #     favorite = Favorite(
+        #         user_id=rc(users).id,
+        #         thread_id=rc(threads).id
+        #     )
+        #     db.session.add(favorite)
+        # db.session.commit()
 
         print("Seed complete!")
