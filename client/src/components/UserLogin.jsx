@@ -3,9 +3,11 @@ import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import "./LoginStyles.css"
+import { useUser } from "./UserContext"
 
 function UserLogin() {
 
+    const {currentUser, setCurrentUser} = useUser()
     const navigate = useNavigate()
 
      const LoginTextInput = ({label, ...props}) => {
@@ -49,6 +51,8 @@ function UserLogin() {
                         .then(res => res.json())
                         .then(values => {
                             console.log(values)
+                            setCurrentUser(values)
+                            sessionStorage.setItem('currentUser', JSON.stringify(values))
                             navigate('/')
                         })
                         .then( setSubmitting(false), resetForm() );

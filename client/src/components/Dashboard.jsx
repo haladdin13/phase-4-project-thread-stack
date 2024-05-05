@@ -2,9 +2,16 @@ import React, {useState, useEffect} from 'react';
 import ThreadContainer from './Dashboard_components/Thread_Container';
 import CreateThreadDashboard from './Dashboard_components/Create_Thread_Dashboard';
 import CurrentCategory from './category_components/CurrentCategory';
+import { useUser } from "./UserContext"
+import AccountOptions from './AccountOptions';
+import NavBar from './Navbar'
+
 function Dashboard(){
 
     const [threads, setThreads] = useState([])
+    const {currentUser, setCurrentUser} = useUser();
+
+    const user_name = currentUser.username
     
     const addThread = (newThread) => {
         console.log(newThread);
@@ -63,6 +70,8 @@ function Dashboard(){
 
     return(
         <div>
+            <NavBar />
+
             <CreateThreadDashboard onAddThread={addThread} />
 
             

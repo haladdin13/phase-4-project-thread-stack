@@ -20,12 +20,20 @@ import UserLogin from "./UserLogin"
 function App() {
 
 const [currentUser, setCurrentUser] = useState({})
+
+ useEffect(()=> {
+    const userInSession = sessionStorage.getItem('currentUser')
+    if (userInSession){
+      const user = JSON.parse(userInSession)
+      setCurrentUser(user)
+    }
+  }, [])
   
 
 
   return (
     <>
-      <Navbar />
+     
       <UserContext.Provider value={{currentUser, setCurrentUser}}>
       <div className="container">
         <Routes>

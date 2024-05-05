@@ -1,5 +1,6 @@
 import React, { useImperativeHandle } from 'react';
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import AccountOptions from './AccountOptions';
 
 function Navbar(){
     return (<nav className="nav">
@@ -9,7 +10,8 @@ function Navbar(){
         <ul>
            <CustomLink to="/dashboard">Dashboard</CustomLink>
            <CustomLink to="/categories">Categories</CustomLink>
-           <CustomLink to="/user">User</CustomLink>  
+           <CustomLink to="/user">User</CustomLink> 
+           <AccountOptions /> 
         </ul>
     </nav>
     )
