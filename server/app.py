@@ -55,9 +55,9 @@ api.add_resource(Signup, '/signup', endpoint='signup')
 
 class Login(Resource):
     def post(self):
-        username = request.get_json()['username']
+        user_name = request.get_json()['user_name']
 
-        user = User.query.filter(User.username == username).first()
+        user = User.query.filter(User.user_name == user_name).first()
         password = request.get_json()['password']
 
         if not user:

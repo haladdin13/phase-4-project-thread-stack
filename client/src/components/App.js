@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserContext from "./UserContext";
 
-
+import User from "./User"
 import Dashboard from "./Dashboard";
 import Category from "./Category";
-import User from "./User";
 import CurrentCategory from "./category_components/CurrentCategory";
 import CurrentThread from "./Dashboard_components/CurrentThread";
 // import GroupThread from "./components/GroupThread";
@@ -14,21 +13,20 @@ import CurrentThread from "./Dashboard_components/CurrentThread";
 // import Favorite from "./components/Favorite";
 import Navbar from "./Navbar";
 import UserSignup from "./UserSignup";
+import UserLogin from "./UserLogin"
 
 
 
 function App() {
 
-  const [user, setUser] = useState({
-    userName: "nkhattak",
-    userAvatar: "https://bootdey.com/img/Content/avatar/avatar1.png",
-  })
+const [currentUser, setCurrentUser] = useState({})
+  
 
 
   return (
     <>
       <Navbar />
-      <UserContext.Provider value={user}>
+      <UserContext.Provider value={{currentUser, setCurrentUser}}>
       <div className="container">
         <Routes>
           <Route path='/' element={<Dashboard />} />
@@ -38,6 +36,7 @@ function App() {
           <Route path='/user' element={<User />} />
           <Route path='/threads/:id' element={<CurrentThread />}/>
           <Route path='/signup' element={<UserSignup />} />
+          <Route path='/login' element={<UserLogin />} />
         </Routes>
       </div>
       </UserContext.Provider>
