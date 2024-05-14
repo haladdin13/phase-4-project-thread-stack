@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import CategoryContainer from "./category_components/CategoryContainer";
 import CreateCategory from "./category_components/CreateCategory";
+import Navbar from "./Navbar";
 
 
 function Category(){
@@ -63,6 +64,7 @@ function Category(){
 
     return(
         <div>
+            <Navbar />
             <CreateCategory onAddCategory={addCategory} />
             <CategoryContainer renderCategory={renderCategory} onSave={handleSaveCategory} onDelete={handleDeleteCategory}/>
         </div>

@@ -1,0 +1,85 @@
+.avatar-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.user-Picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* Makes the image round */
+    object-fit: cover;
+    /* Ensures the image covers the round shape */
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+    position: absolute;
+    top: 9.5%;
+    /* Position it right below the avatar button */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    z-index: 1000;
+}
+
+.dropdown-menu-header,
+.dropdown-menu-body {
+    padding: 10px;
+}
+
+.dropdown-menu-header {
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-menu-header-title h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.dropdown-menu-header-close {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Button styles */
+.dropdown-menu-body button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown-menu-body button:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-menu-body button:hover {
+    background-color: #0056b3;
+}
+
+/* Link styles */
+.dropdown-menu-body a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+/* Adjusting padding for buttons containing <Link> */
+.dropdown-menu-body button a {
+    padding: 10px;
+    display: block;
+}

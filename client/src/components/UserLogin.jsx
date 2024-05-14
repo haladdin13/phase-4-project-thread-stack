@@ -2,14 +2,15 @@ import React from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import './SignupStyles.css';
+import "./LoginStyles.css"
+import { useUser } from "./UserContext"
 
+function UserLogin() {
 
-
-function UserSignup(){
+    const {currentUser, setCurrentUser} = useUser()
     const navigate = useNavigate()
 
-    const SignupTextInput = ({label, ...props}) => {
+     const LoginTextInput = ({label, ...props}) => {
 
         const [field, meta] = useField(props)
         return(
@@ -24,26 +25,23 @@ function UserSignup(){
     }
 
     return(
-        <div className='signup-heading'>
-            <h1>Signup</h1>
+         <div className='login-heading'>
+            <h1>Login</h1>
             <div> 
                 <Formik
                     initialValues={{
                         user_name: "",
-                        email: "",
                         password: ""
                     }}
                     validationSchema={Yup.object({
                         user_name: Yup.string()
                         .required('Username is required.'),
-                        email: Yup.string()
-                        .required('Email is required.'),
                         password: Yup.string()
                         .required('Password is required')
                     })}
                     onSubmit={(values, { setSubmitting, resetForm }) => {
 
-                        fetch(`http://localhost:5555/signup`, {
+                        fetch(`http://localhost:5555/login`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -53,22 +51,25 @@ function UserSignup(){
                         .then(res => res.json())
                         .then(values => {
                             console.log(values)
-                            navigate('/login')
+                            setCurrentUser(values)
+                            sessionStorage.setItem('currentUser', JSON.stringify(values))
+                            navigate('/')
                         })
                         .then( setSubmitting(false), resetForm() );
                     }}
+
                     >
-                        <Form className='SubmitForm'>
-                            <SignupTextInput type="text" name="user_name" label="Username" />
-                            <SignupTextInput type="email" name="email" label="Email" />
-                            <SignupTextInput type="password" name="password" label="Password" />
-                            <button type="submit">Submit</button>
+                        <Form className='login-Form'>
+                            <LoginTextInput type="text" name="user_name" label="Username" />
+                            <LoginTextInput type="password" name="password" label="Password" />
+                            <button type="submit">Login</button>
                         </Form>
                 </Formik>
             </div>
         </div>
     )
 
+
 }
 
-export default UserSignup;
+export default UserLogin;

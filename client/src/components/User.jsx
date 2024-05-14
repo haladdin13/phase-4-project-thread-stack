@@ -2,6 +2,7 @@ import React from 'react';
 import CurrentThread from './Dashboard_components/CurrentThread';
 import { Switch, Route, Routes } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const UserProfile = () => {
     
@@ -14,6 +15,7 @@ const UserProfile = () => {
 
     return (
         <div className="container light-style flex-grow-1 container-p-y">
+             <Navbar />
             <h4 className="font-weight-bold py-3 mb-4">
                 Account settings
             </h4>
@@ -83,6 +85,7 @@ const UserProfile = () => {
                 <button type="button" className="btn btn-default">Cancel</button>
             </div>
             <div>
+               
                 <Routes>
                     <Route path={`/threads/:id`} element={<CurrentThread userName={userName} userAvatar={userAvatar} />} />
                 </Routes>

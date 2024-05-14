@@ -55,9 +55,9 @@ api.add_resource(Signup, '/signup', endpoint='signup')
 
 class Login(Resource):
     def post(self):
-        username = request.get_json()['username']
+        user_name = request.get_json()['user_name']
 
-        user = User.query.filter(User.username == username).first()
+        user = User.query.filter(User.user_name == user_name).first()
         password = request.get_json()['password']
 
         if not user:
@@ -83,6 +83,12 @@ class Logout(Resource):
         return {}, 204
 
 api.add_resource(Logout, '/logout', endpoint='logout')
+
+allowed_endpoints = ['signup', 'login', 'check_session', 'categories', 'category_by_id', 'threads_by_category', 'posts', 'post_by_id', 'favorites', 'favorite_by_id', 'users', 'user_by_id', 'threads', 'thread_by_id' ]
+@app.before_request
+def check_if_logged_in():
+    if not session.get('user_id') and request.endpoint not in allowed_endpoints:
+        return {'error': 'Unauthorized'}, 401
 
 # Views go here!
 
