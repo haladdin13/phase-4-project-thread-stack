@@ -32,7 +32,7 @@ function AccountOptions() {
 
 
     function isLoggedIn() {
-        if (currentUser.username) {
+        if (currentUser) {
             return (
                 <div>
                     <button onClick={loggingOut}>

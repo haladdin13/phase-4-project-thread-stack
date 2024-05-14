@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CreateThread from '../Dashboard_components/Create_Thread';
+import Navbar from '../Navbar';
 function CurrentCategory({
     category_name,
     description,
@@ -50,6 +51,9 @@ function CurrentCategory({
 
     return (
         <div>
+            <div>
+                <Navbar />
+            </div>
         <h1>{categoryThread.category_name}</h1>
         <h2>{categoryThread.description}</h2>
         <CreateThread onAddThread={addThread} categoryID={id}/>

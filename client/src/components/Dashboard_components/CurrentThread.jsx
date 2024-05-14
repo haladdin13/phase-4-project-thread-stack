@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CreatePost from '../post_components/CreatePost';
 import { useUser } from '../UserContext';
+import Navbar from '../Navbar';
 
 function CurrentThread() {
 
@@ -76,6 +77,9 @@ function CurrentThread() {
 
     return (
     <div>
+        <div>
+            <Navbar />
+        </div>
         <h1>{currentThread.thread_title}</h1>
         <h2>{currentThread.thread_content}</h2>
         <h4>{userName}</h4>
