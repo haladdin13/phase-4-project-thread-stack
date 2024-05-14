@@ -32,27 +32,24 @@ function AccountOptions() {
 
 
     function isLoggedIn() {
-        if (currentUser) {
-            return (
-                <div>
-                    <button onClick={loggingOut}>
-                        <Link to="/logout">Logout</Link>
-                    </button>
-                </div>
-            )
-        } else {
-            return (
-                <div>
-                    <button>
-                        <Link to="/login">Login</Link>
-                    </button>
-                    <button>
-                        <Link to="/signup">Sign Up</Link>
-                    </button>
-                </div>
-            )
-        }
+
+    if (currentUser && currentUser.isLoggedIn) {
+        return (
+            <div>
+                <button onClick={loggingOut}>
+                    <Link to="/logout">Logout</Link>
+                </button>
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <Link to="/login" className="button-link">Login</Link>
+                <Link to="/signup" className="button-link">Sign Up</Link>
+            </div>
+        );
     }
+}
 
 
 
@@ -67,7 +64,7 @@ function AccountOptions() {
                     <div className="dropdown-menu-header">
                         <div className="dropdown-menu-header-title">
                             <h3>Account</h3>
-                            <p>{currentUser.user_name} is threading!</p>
+                            <p className="threading">{currentUser.user_name} is threading!</p>
                         </div>
                         <div className="dropdown-menu-header-close" onClick={toggleMenu}>
                             <i className="fas fa-times"></i>

@@ -83,3 +83,37 @@
     padding: 10px;
     display: block;
 }
+
+.button-link {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #007BFF;
+    /* Bootstrap primary blue */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    outline: none;
+}
+
+.button-link:hover,
+.button-link:focus {
+    background-color: #0056b3;
+    /* Darker blue */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button-link:active {
+    background-color: #004085;
+    /* Even darker blue */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.threading {
+    color: #000;
+}
