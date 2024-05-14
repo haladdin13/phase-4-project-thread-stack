@@ -51,7 +51,7 @@ function UserLogin() {
                         .then(res => res.json())
                         .then(values => {
                             console.log(values)
-                            setCurrentUser(values)
+                            setCurrentUser({...values, isLoggedIn: true})
                             sessionStorage.setItem('currentUser', JSON.stringify(values))
                             navigate('/')
                         })
